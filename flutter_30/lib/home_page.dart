@@ -6,8 +6,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Material(
-        child: Center(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Catelog App"),
+        ),
+        body: Center(
           child: Text('$greeting'),
         ),
       ),
