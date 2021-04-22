@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_30/widgets/my_drawer.dart';
 
 class HomePage extends StatelessWidget {
   final String greeting = 'Welcome to 30 days of flutter :)';
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Text('$greeting'),
       ),
-      drawer: Drawer(),
+      drawer: MyDrawer(),
     );
   }
 }
