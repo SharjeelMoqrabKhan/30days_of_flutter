@@ -1,5 +1,19 @@
-class Item{
-  final String id;
+class Catelog {
+  static final items = [
+    Item(
+      id: 12,
+      name: 'Iphone 12',
+      desc: 'Iphone 12 Generation',
+      color: 'Blue',
+      price: 999,
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRISJ6msIu4AU9_M9ZnJVQVFmfuhfyJjEtbUm3ZK11_8IV9TV25-1uM5wHjiFNwKy99w0mR5Hk&usqp=CAc',
+    )
+  ];
+}
+
+class Item {
+  final int id;
   final String name;
   final String desc;
   final num price;
@@ -8,14 +22,3 @@ class Item{
 
   Item({this.id, this.name, this.desc, this.price, this.color, this.image});
 }
-
-final  product =[
-  Item(
-    id: 'Mob-real-12',
-    name: 'RealMe 9C',
-    desc: 'RealMe 9c mobile by Xaiomy',
-    color:'Blue',
-    price: 179000,
-    image: 'https://www.whatmobile.com.pk/admin/images/Xiaomi/XiaomiRedmi9C3GB-b.jpg',
-  )
-];
