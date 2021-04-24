@@ -18,27 +18,37 @@ class _HomePageState extends State<HomePage> {
     loadData();
   }
 
-  loadData() async{
-    final catelogJson = await rootBundle.loadString('assets/files/catelog.json');
-    final decodedData =jsonDecode(catelogJson);
-    var productData=decodedData["products"];
-    print(productData);
+  loadData() async {
+    await Future.delayed(Duration(seconds: 1));
+    final catelogJson =
+        await rootBundle.loadString('assets/files/catelog.json');
+    final decodedData = jsonDecode(catelogJson);
+    var productData = decodedData["products"];
+    Catelog.items =
+        List.from(productData).map<Item>((item) => Item.fromMap(item)).toList();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final dummyList = List.generate(20, (index) => Catelog.items[0]);
     return Scaffold(
       appBar: AppBar(
         title: Text("Catelog App"),
       ),
-      body: ListView.builder(
-        itemCount: dummyList.length,
-        itemBuilder: (context, index) {
-          return ItemWidget(
-            item: dummyList[index],
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: (Catelog.items != null && Catelog.items.isNotEmpty)
+            ? ListView.builder(
+                itemCount: Catelog.items.length,
+                itemBuilder: (context, index) {
+                  return ItemWidget(
+                    item: Catelog.items[index],
+                  );
+                },
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
       drawer: MyDrawer(),
     );
