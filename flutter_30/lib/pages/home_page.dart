@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_30/model/catelog.dart';
-import 'package:flutter_30/widgets/ItemWidget.dart';
 import 'package:flutter_30/widgets/my_drawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,13 +37,27 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: (Catelog.items != null && Catelog.items.isNotEmpty)
-            ? ListView.builder(
-                itemCount: Catelog.items.length,
+            ? GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16.0,
+                  crossAxisSpacing: 16.0,
+                ),
                 itemBuilder: (context, index) {
-                  return ItemWidget(
-                    item: Catelog.items[index],
+                  final item = Catelog.items[index];
+                  return GridTile(
+                    child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Image.network(item.image),
+                    ),
+                    header: Text(item.name),
+                    footer: Text(item.price.toString()),
                   );
                 },
+                itemCount: Catelog.items.length,
               )
             : Center(
                 child: CircularProgressIndicator(),
