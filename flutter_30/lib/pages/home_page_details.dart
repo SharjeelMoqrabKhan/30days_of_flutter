@@ -48,15 +48,22 @@ class HomePageDetails extends StatelessWidget {
                 child: Container(
                   color: Colors.white,
                   width: context.screenWidth,
-                  child: Column(
-                    children: [
-                      catelog.name.text.xl4.color(MyTheme.darkColor).make(),
-                      catelog.desc.text.xl
-                          .textStyle(context.captionStyle)
-                          .make(),
-                      10.heightBox,
-                    ],
-                  ).py64(),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        catelog.name.text.xl4.color(MyTheme.darkColor).make(),
+                        catelog.desc.text.xl
+                            .textStyle(context.captionStyle)
+                            .make(),
+                        10.heightBox,
+                        'Voluptua ipsum no labore ut gubergren sanctus justo eos est duo, sed eos dolor kasd voluptua no et labore. Kasd.'
+                            .text
+                            .textStyle(context.captionStyle)
+                            .make()
+                            .p16(),
+                      ],
+                    ).py64(),
+                  ),
                 ),
               ),
             ),
