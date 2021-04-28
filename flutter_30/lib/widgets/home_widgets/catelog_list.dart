@@ -16,9 +16,11 @@ class CatelogList extends StatelessWidget {
         return InkWell(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => HomePageDetails(catelog: catelog)));
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePageDetails(catelog: catelog),
+              ),
+            );
           },
           child: CatelogItem(
             catelog: catelog,
@@ -40,8 +42,11 @@ class CatelogItem extends StatelessWidget {
     return VxBox(
       child: Row(
         children: [
-          CatelogImage(
-            image: catelog.image,
+          Hero(
+            tag: catelog.id.toString(),
+            child: CatelogImage(
+              image: catelog.image,
+            ),
           ),
           Expanded(
             child: SingleChildScrollView(
