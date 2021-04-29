@@ -27,12 +27,16 @@ class MyTheme {
         buttonColor: lightBlueColor,
         accentColor: Vx.indigo500,
         appBarTheme: AppBarTheme(
-            color: Colors.black,
-            elevation: 0,
-            iconTheme: IconThemeData(
-              color: Colors.white,
-            ),
-            textTheme: Theme.of(context).textTheme),
+          color: Colors.black,
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+          textTheme: Theme.of(context).textTheme.copyWith(
+                headline6:
+                    context.textTheme.headline6.copyWith(color: Colors.white),
+              ),
+        ),
       );
 
   static Color creamColor = Color(0xfff5f5f5);

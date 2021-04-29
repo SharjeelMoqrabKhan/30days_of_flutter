@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_30/widgets/theme.dart';
 
 class Cart extends StatelessWidget {
   @override
@@ -10,7 +9,7 @@ class Cart extends StatelessWidget {
         centerTitle: true,
         title: Text('Cart'),
       ),
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: Theme.of(context).canvasColor,
     );
   }
 }
