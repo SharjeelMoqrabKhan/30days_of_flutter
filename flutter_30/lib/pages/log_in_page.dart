@@ -27,91 +27,96 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).canvasColor,
         body: SingleChildScrollView(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/images/login.png',
-              fit: BoxFit.cover,
-            ),
-            Text(
-              'Welcome $name',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'User Name',
-                      hintText: 'Enter User Name',
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Image.asset(
+                  'assets/images/login.png',
+                  fit: BoxFit.cover,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Welcome $name',
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
                     ),
-                    onChanged: (value) {
-                      name = value;
-                      setState(() {});
-                    },
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Name can not empty';
-                      }
-                      return null;
-                    },
                   ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      hintText: 'Enter Password',
-                    ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Password can not empty';
-                      } else if (value.length < 6) {
-                        return 'Password should be six characters long atleast';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Material(
-                    color: Colors.deepPurple,
-                    borderRadius: BorderRadius.circular(changedButton ? 50 : 8),
-                    child: InkWell(
-                      onTap: () => moveToNextPage(context),
-                      child: AnimatedContainer(
-                        duration: Duration(seconds: 1),
-                        child: Container(
-                          width: changedButton ? 50 : 100,
-                          height: 40,
-                          alignment: Alignment.center,
-                          child: changedButton
-                              ? Icon(Icons.check)
-                              : Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
-                                ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 32.0),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'User Name',
+                          hintText: 'Enter User Name',
+                        ),
+                        onChanged: (value) {
+                          name = value;
+                          setState(() {});
+                        },
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Name can not empty';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          hintText: 'Enter Password',
+                        ),
+                        obscureText: true,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Password can not empty';
+                          } else if (value.length < 6) {
+                            return 'Password should be six characters long atleast';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Material(
+                        color: Theme.of(context).buttonColor,
+                        borderRadius:
+                            BorderRadius.circular(changedButton ? 50 : 8),
+                        child: InkWell(
+                          onTap: () => moveToNextPage(context),
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 1),
+                            child: Container(
+                              width: changedButton ? 50 : 100,
+                              height: 40,
+                              alignment: Alignment.center,
+                              child: changedButton
+                                  ? Icon(Icons.check)
+                                  : Text(
+                                      'Login',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0),
+                                    ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    ));
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }

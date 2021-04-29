@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_30/model/catelog.dart';
-import 'package:flutter_30/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomePageDetails extends StatelessWidget {
@@ -12,26 +11,32 @@ class HomePageDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
-      appBar: AppBar(),
-      bottomNavigationBar: ButtonBar(
-        alignment: MainAxisAlignment.spaceBetween,
-        buttonPadding: EdgeInsets.zero,
-        children: [
-          '\$ ${catelog.price}'.text.xl3.make(),
-          ElevatedButton(
-            onPressed: null,
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(MyTheme.darkColor),
-              shape: MaterialStateProperty.all(StadiumBorder()),
-            ),
-            child: Text(
-              'Buy',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-          )
-        ],
-      ).p16(),
+      backgroundColor: Theme.of(context).canvasColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      bottomNavigationBar: Container(
+        color: Theme.of(context).cardColor,
+        child: ButtonBar(
+          alignment: MainAxisAlignment.spaceBetween,
+          buttonPadding: EdgeInsets.zero,
+          children: [
+            '\$ ${catelog.price}'.text.xl3.make(),
+            ElevatedButton(
+              onPressed: null,
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(Theme.of(context).buttonColor),
+                shape: MaterialStateProperty.all(StadiumBorder()),
+              ),
+              child: Text(
+                'Buy',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            )
+          ],
+        ).p16(),
+      ),
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -46,12 +51,14 @@ class HomePageDetails extends StatelessWidget {
                 arcType: VxArcType.CONVEY,
                 edge: VxEdge.TOP,
                 child: Container(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   width: context.screenWidth,
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        catelog.name.text.xl4.color(MyTheme.darkColor).make(),
+                        catelog.name.text.xl4
+                            .color(Theme.of(context).accentColor)
+                            .make(),
                         catelog.desc.text.xl
                             .textStyle(context.captionStyle)
                             .make(),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_30/model/catelog.dart';
 import 'package:flutter_30/pages/home_page_details.dart';
 import 'package:flutter_30/widgets/home_widgets/catelog_image.dart';
-import 'package:flutter_30/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CatelogList extends StatelessWidget {
@@ -53,7 +52,9 @@ class CatelogItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  catelog.name.text.lg.color(MyTheme.darkColor).make(),
+                  catelog.name.text.lg
+                      .color(Theme.of(context).accentColor)
+                      .make(),
                   catelog.desc.text.textStyle(context.captionStyle).make(),
                   10.heightBox,
                   ButtonBar(
@@ -64,8 +65,8 @@ class CatelogItem extends StatelessWidget {
                       ElevatedButton(
                         onPressed: null,
                         style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(MyTheme.darkColor),
+                          backgroundColor: MaterialStateProperty.all(
+                              Theme.of(context).buttonColor),
                           shape: MaterialStateProperty.all(StadiumBorder()),
                         ),
                         child: Text(
@@ -81,6 +82,6 @@ class CatelogItem extends StatelessWidget {
           )
         ],
       ),
-    ).white.roundedLg.square(150).py16.make();
+    ).color(Theme.of(context).cardColor).roundedLg.square(150).py16.make();
   }
 }
