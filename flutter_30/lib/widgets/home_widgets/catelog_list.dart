@@ -94,11 +94,13 @@ class _AddToCartState extends State<AddToCart> {
     bool isInCart = _cart.items.contains(widget.catalog) ?? false;
     return ElevatedButton(
       onPressed: () {
-        final _catalog = Catelog();
-        _cart.add(widget.catalog);
-        _cart.catelog = _catalog;
-        isInCart = isInCart.toggle();
-        setState(() {});
+        if (!isInCart) {
+          final _catalog = Catelog();
+          _cart.add(widget.catalog);
+          _cart.catelog = _catalog;
+          isInCart = isInCart.toggle();
+          setState(() {});
+        }
       },
       style: ButtonStyle(
         backgroundColor:
