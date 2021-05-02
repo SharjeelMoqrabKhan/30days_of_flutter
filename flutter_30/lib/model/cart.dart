@@ -1,6 +1,11 @@
 import 'package:flutter_30/model/catelog.dart';
 
 class CartModel {
+//singleturn class  which object intialize only onces
+  static final cartModel = CartModel._internal();
+  CartModel._internal();
+  factory CartModel() => cartModel;
+
 //catelog feild
   Catelog _catalog;
 

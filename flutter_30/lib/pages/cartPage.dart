@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_30/model/cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Cart extends StatelessWidget {
@@ -29,6 +30,7 @@ class Cart extends StatelessWidget {
 
 // ignore: camel_case_types
 class _cartTotal extends StatelessWidget {
+  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -37,7 +39,7 @@ class _cartTotal extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            '\$999',
+            '\$${_cart.totalPrice}',
             style:
                 TextStyle(color: Theme.of(context).accentColor, fontSize: 32),
           ),
@@ -66,19 +68,18 @@ class _cartList extends StatefulWidget {
 
 // ignore: camel_case_types
 class __cartListState extends State<_cartList> {
+  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      itemCount: _cart.items?.length,
       itemBuilder: (context, index) {
         return ListTile(
           leading: Icon(Icons.done),
-          trailing: IconButton(icon: Icon(Icons.remove), onPressed: () {
-            
-          }),
-          title: Text('Item1'),
+          trailing: IconButton(icon: Icon(Icons.remove), onPressed: () {}),
+          title: Text(_cart.items[index].name),
         );
       },
-      itemCount: 5,
     );
   }
 }

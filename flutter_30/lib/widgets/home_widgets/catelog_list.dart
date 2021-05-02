@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_30/model/cart.dart';
 import 'package:flutter_30/model/catelog.dart';
 import 'package:flutter_30/pages/home_page_details.dart';
 import 'package:flutter_30/widgets/home_widgets/catelog_image.dart';
@@ -22,7 +23,7 @@ class CatelogList extends StatelessWidget {
             );
           },
           child: CatelogItem(
-            catelog: catelog,
+            catalog: catelog,
           ),
         );
       },
@@ -31,10 +32,10 @@ class CatelogList extends StatelessWidget {
 }
 
 class CatelogItem extends StatelessWidget {
-  final Item catelog;
+  final Item catalog;
 
-  const CatelogItem({Key key, @required this.catelog})
-      : assert(catelog != null),
+  const CatelogItem({Key key, @required this.catalog})
+      : assert(catalog != null),
         super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -42,9 +43,9 @@ class CatelogItem extends StatelessWidget {
       child: Row(
         children: [
           Hero(
-            tag: catelog.id.toString(),
+            tag: catalog.id.toString(),
             child: CatelogImage(
-              image: catelog.image,
+              image: catalog.image,
             ),
           ),
           Expanded(
@@ -52,28 +53,17 @@ class CatelogItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  catelog.name.text.lg
+                  catalog.name.text.lg
                       .color(Theme.of(context).accentColor)
                       .make(),
-                  catelog.desc.text.textStyle(context.captionStyle).make(),
+                  catalog.desc.text.textStyle(context.captionStyle).make(),
                   10.heightBox,
                   ButtonBar(
                     alignment: MainAxisAlignment.spaceBetween,
                     buttonPadding: EdgeInsets.zero,
                     children: [
-                      '\$ ${catelog.price}'.text.make(),
-                      ElevatedButton(
-                        onPressed: null,
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              Theme.of(context).buttonColor),
-                          shape: MaterialStateProperty.all(StadiumBorder()),
-                        ),
-                        child: Text(
-                          'Buy',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      )
+                      '\$ ${catalog.price}'.text.make(),
+                      AddToCart(catalog: catalog)
                     ],
                   ).pOnly(right: 8.0)
                 ],
@@ -83,5 +73,44 @@ class CatelogItem extends StatelessWidget {
         ],
       ),
     ).color(Theme.of(context).cardColor).roundedLg.square(150).py16.make();
+  }
+}
+
+class AddToCart extends StatefulWidget {
+  final Item catalog;
+  const AddToCart({
+    Key key,
+    this.catalog,
+  }) : super(key: key);
+
+  @override
+  _AddToCartState createState() => _AddToCartState();
+}
+
+class _AddToCartState extends State<AddToCart> {
+  bool isAdded = false;
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        final _cart = CartModel();
+        final _catalog = Catelog();
+        _cart.add(widget.catalog);
+        _cart.catelog = _catalog;
+        isAdded = isAdded.toggle();
+        setState(() {});
+      },
+      style: ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all(Theme.of(context).buttonColor),
+        shape: MaterialStateProperty.all(StadiumBorder()),
+      ),
+      child: isAdded
+          ? Icon(Icons.done)
+          : Text(
+              'Add to cart',
+              style: TextStyle(color: Colors.white),
+            ),
+    );
   }
 }

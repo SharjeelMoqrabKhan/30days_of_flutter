@@ -1,12 +1,16 @@
 class Catelog {
+  //singleturn class  which object intialize only onces
+  static final catalogModel = Catelog._internal();
+  Catelog._internal();
+  factory Catelog() => catalogModel;
   static List<Item> items;
 
   //get Item by id
-   Item getById(int id) =>
+  Item getById(int id) =>
       items.firstWhere((element) => element.id == id, orElse: null);
 
   //get Item by position
-   Item getByPosition(int pos) {
+  Item getByPosition(int pos) {
     return items[pos];
   }
 }
