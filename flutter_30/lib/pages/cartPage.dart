@@ -61,13 +61,14 @@ class _cartTotal extends StatelessWidget {
 }
 
 // ignore: camel_case_types
-class _cartList extends StatefulWidget {
+class _cartList extends StatelessWidget {
   @override
-  __cartListState createState() => __cartListState();
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
+  }
 }
-
-// ignore: camel_case_types
-class __cartListState extends State<_cartList> {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
@@ -82,11 +83,11 @@ class __cartListState extends State<_cartList> {
                     icon: Icon(Icons.remove),
                     onPressed: () {
                       _cart.remove(_cart.items[index]);
-                      setState(() {});
+                     // setState(() {});
                     }),
                 title: Text(_cart.items[index].name),
               );
             },
           );
   }
-}
+

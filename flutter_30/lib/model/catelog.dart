@@ -1,8 +1,4 @@
 class Catelog {
-  //singleturn class  which object intialize only onces
-  static final catalogModel = Catelog._internal();
-  Catelog._internal();
-  factory Catelog() => catalogModel;
   static List<Item> items;
 
   //get Item by id
