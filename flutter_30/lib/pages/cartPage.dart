@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_30/core/store.dart';
 import 'package:flutter_30/model/cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -30,7 +31,7 @@ class Cart extends StatelessWidget {
 
 // ignore: camel_case_types
 class _cartTotal extends StatelessWidget {
-  final _cart = CartModel();
+  final CartModel _cart = (VxState.store as MyStore).cart;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -64,14 +65,7 @@ class _cartTotal extends StatelessWidget {
 class _cartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
-  }
-}
-  final _cart = CartModel();
-  @override
-  Widget build(BuildContext context) {
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? "Nothing To Show".text.xl3.makeCentered()
         : ListView.builder(
@@ -83,11 +77,11 @@ class _cartList extends StatelessWidget {
                     icon: Icon(Icons.remove),
                     onPressed: () {
                       _cart.remove(_cart.items[index]);
-                     // setState(() {});
+                      // setState(() {});
                     }),
                 title: Text(_cart.items[index].name),
               );
             },
           );
   }
-
+}

@@ -1,7 +1,8 @@
+import 'package:flutter_30/core/store.dart';
 import 'package:flutter_30/model/catelog.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CartModel {
-
 //catelog feild
   Catelog _catalog;
 
@@ -32,5 +33,16 @@ class CartModel {
   //Remove item
   void remove(Item item) {
     _itemsIds.remove(item.id);
+  }
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  final Item item;
+
+  AddMutation(this.item);
+
+  @override
+  perform() {
+    store.cart._itemsIds.add(item.id);
   }
 }
